@@ -1,0 +1,1 @@
+Data acquired from the USDA FoodData Central [data download page](https://fdc.nal.usda.gov/download-datasets.html). Specifically, SR Legacy from April 2019 and Supporting data for Downloads from April 2019, zipped filenames "FoodData_Central_sr_legacy_food_csv_ 2019-04-02" and "FoodData_Central_Supporting_Data_csv_ 2019-04-02".
