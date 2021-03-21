@@ -1,0 +1,7 @@
+.row-hover-delete .ag-row-hover {
+  background-color: #ff9980 !important;
+}
+
+.ag-row-pinned.ag-row-hover {
+  background-color: inherit !important;
+}
