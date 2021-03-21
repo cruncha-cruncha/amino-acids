@@ -8,30 +8,31 @@ function SelectedFoods() {
 
   const pageSize = 20;
 
-  const handleRowClicked = (e) => {
-    removeSelected(e.node.data.id);
+  const handleCellClicked = (e) => {
+    if (e.colDef.field == "name") {
+      removeSelected(e.data.id);
+    }
   }
-
-  console.log("totalsRow", totalsRow);
 
   return (
     <div className="my-5">
       <div className="mb-1">
-        <span>Grams of essential amino acids per 100g of food. "Met" is methionine + cystine, "Phe" is phenylalanine + tyrosine, all others are single acids.</span>
+        <span>Grams of essential amino acids per an amount of food (default is 100g, click on the value to edit it). Click on a food name to de-select it. "Met" is methionine + cystine, "Phe" is phenylalanine + tyrosine, all others are single acids.</span>
       </div>
-      <div className="ag-theme-alpine row-hover-delete" style={{ height: 400 }}>
+      <div className="ag-theme-alpine no-hover" style={{ height: 400 }}>
         <AgGridReact
           defaultColDef={{
             resizable: true
           }}
           rowData={rowData}
-          onRowClicked={handleRowClicked}
+          onCellClicked={handleCellClicked}
           columnDefs={columnDefs}
           suppressCellSelection={true}
           pagination={true}
           paginationPageSize={pageSize}
           pinnedBottomRowData={[totalsRow]}
           suppressNoRowsOverlay={true}
+          singleClickEdit={true}
         >
         </AgGridReact>
       </div>

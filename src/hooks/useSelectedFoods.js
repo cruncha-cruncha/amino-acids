@@ -1,12 +1,38 @@
 
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { foodsIndexState, aminoLookupState, selectedFoodIdsState } from '../state/atoms';
+import { foodsIndexState, aminoLookupState, selectedFoodsState } from '../state/atoms';
 
 function useFoodSearch() {
   const foodsIndex = useRecoilValue(foodsIndexState);
   const aminoLookup = useRecoilValue(aminoLookupState);
-  const [selectedFoodIds, setSelectedFoodIds] = useRecoilState(selectedFoodIdsState);
+  const [selectedFoods, setSelectedFoods] = useRecoilState(selectedFoodsState);
+  const [totalsRow, setTotalsRow] = useState(null);
+
+  const handleFoodAmountChanged = (e) => {
+    const newAmount = Number.parseFloat(e.newValue);
+    if (newAmount.toString() !== e.newValue.trim()) {
+      return;
+    }
+
+    const fid = e.data.id;
+    const info = foodsIndex[fid];
+
+    const newAA = { ...info.aminoAmounts } // new Amino Amounts
+    for (const k in newAA) {
+      newAA[k] = Math.round(newAmount * newAA[k] * 10) / 1000;
+    }
+
+    const updatedFood = {
+      id: info.id,
+      name: info.name,
+      foodAmount: newAmount,
+      ...newAA
+    }
+
+    setSelectedFoods([ ...selectedFoods.filter(food => food.id != fid), updatedFood ])
+    updateTotalsRow();
+  }
 
   const columnDefs = [
     {
@@ -17,42 +43,49 @@ function useFoodSearch() {
     {
       headerName: "Food",
       field: "name",
-      flex: 1
-    }
+      flex: 1,
+      cellClass: "hover-cell-delete"
+    },
+    {
+      headerName: 'g',
+      field: "foodAmount",
+      width: 80,
+      editable: true,
+      valueSetter: handleFoodAmountChanged
+    },
+    ...Object.keys(aminoLookup).map(k => ({ headerName: aminoLookup[k].slice(0, 3), field: k, width: 80 }))
   ];
 
-  columnDefs.push( ...Object.keys(aminoLookup).map(k => ({ headerName: aminoLookup[k].slice(0, 3), field: k, width: 80 })) );
+  const updateTotalsRow = () => {
+    const aminoIdList = Object.keys(aminoLookup);
+    const aminoAmountTotals = selectedFoods.reduce((out, food) => {
+      for (const aid of aminoIdList) {
+        out[aid] += food[aid];
+      }
+      return out;
+    }, aminoIdList.reduce((out, id) => {
+      out[id] = 0; return out;
+    }, {}));
 
-  const removeSelected = (idToRemove) => {
-    setSelectedFoodIds(selectedFoodIds.filter(id => id != idToRemove));
+    setTotalsRow({
+      id: 0,
+      name: 'total',
+      foodAmount: '',
+      ...aminoAmountTotals
+    });
   }
 
-  const rowData = selectedFoodIds.map(id => {
-    const info = foodsIndex[id];
-    const out = { id: info.id, name: info.name };
-    return { ...out, ...info.aminoAmounts };
-  });
+  useEffect(() => {
+    updateTotalsRow();
+  }, [selectedFoods]);
 
-  const aminoAmountTotals = selectedFoodIds.reduce((out, id) => {
-    const info = foodsIndex[id];
-    for (const k in info.aminoAmounts) {
-      out[k] = out[k] ? out[k] + info.aminoAmounts[k] : info.aminoAmounts[k];
-    }
-    return out;
-  }, Object.keys(aminoLookup).reduce((out, id) => {
-    out[id] = 0; return out;
-  }, {}));
-
-
-  const totalsRow = {
-    id: 0,
-    name: 'total',
-    ...aminoAmountTotals
+  const removeSelected = (idToRemove) => {
+    setSelectedFoods(selectedFoods.filter(food => food.id != idToRemove));
   }
 
   return {
     columnDefs,
-    rowData,
+    rowData: selectedFoods,
     totalsRow,
     removeSelected
   }

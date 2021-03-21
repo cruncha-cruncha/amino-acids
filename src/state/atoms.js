@@ -10,7 +10,7 @@ export const aminoLookupState = atom({
   default: {},
 });
 
-export const selectedFoodIdsState = atom({
-  key: 'selectedFoodIds',
+export const selectedFoodsState = atom({
+  key: 'selectedFoods',
   default: [],
 });

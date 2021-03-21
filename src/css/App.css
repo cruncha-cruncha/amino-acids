@@ -1,4 +1,12 @@
-.row-hover-delete .ag-row-hover {
+.no-hover .ag-row-hover {
+  background-color: inherit !important;
+}
+
+.ag-row-pinned .hover-cell-delete:hover {
+  background-color: inherit !important;
+}
+
+.hover-cell-delete:hover {
   background-color: #ff9980 !important;
 }
 

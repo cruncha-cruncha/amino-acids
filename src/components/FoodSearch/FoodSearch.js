@@ -5,7 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import useFoodSearch from '../../hooks/useFoodSearch';
 
 function FoodSearch() {
-  const { columnDefs, rowData, nameSearch, selected, setSelected } = useFoodSearch(); 
+  const { columnDefs, rowData, nameSearch, selected, updateSelected } = useFoodSearch(); 
 
   const pageSize = 20;
 
@@ -17,8 +17,9 @@ function FoodSearch() {
 
   const harmonizeSelected = () => {
     if (gridApi) {
+      const selectedIds = selected.map(food => food.id);
       gridApi.forEachNode((n) => {
-        n.setSelected(selected.includes(n.data.id))
+        n.setSelected(selectedIds.includes(n.data.id))
       });
     }
   }
@@ -31,8 +32,8 @@ function FoodSearch() {
     harmonizeSelected();
   }, [selected])
 
-  const handleRowClicked = () => {
-    setSelected(gridApi.getSelectedRows());
+  const handleRowClicked = (e) => {
+    updateSelected(e.node.data.id)
   }
 
   return (

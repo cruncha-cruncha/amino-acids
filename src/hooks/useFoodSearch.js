@@ -1,11 +1,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { foodsIndexState, selectedFoodIdsState } from '../state/atoms';
+import { foodsIndexState, selectedFoodsState } from '../state/atoms';
 
 function useFoodSearch() {
   const foodsIndex = useRecoilValue(foodsIndexState);
-  const [selectedFoodIds, setSelectedFoodIds] = useRecoilState(selectedFoodIdsState);
+  const [selectedFoods, setSelectedFoods] = useRecoilState(selectedFoodsState);
 
   const [allFoods, setAllFoods] = useState([])
   const [searchResults, setSearchResults] = useState([]);
@@ -38,8 +38,19 @@ function useFoodSearch() {
     setSearchResults(results);
   }
 
-  const setSelected = (selected) => {
-    setSelectedFoodIds(selected.map(x => x.id));
+  const updateSelected = (id) => {
+    const add = (selectedFoods.filter(food => food.id == id).length == 0);
+    if (add) {
+      const info = foodsIndex[id];
+      setSelectedFoods([ ...selectedFoods, {
+        id: info.id,
+        name: info.name,
+        foodAmount: 100,
+        ...info.aminoAmounts
+      }]);
+    } else {
+      setSelectedFoods(selectedFoods.filter(food => food.id != id));
+    }
   }
 
   const columnDefs = [
@@ -58,8 +69,8 @@ function useFoodSearch() {
     nameSearch,
     columnDefs,
     rowData: searchResults,
-    selected: selectedFoodIds,
-    setSelected
+    selected: selectedFoods,
+    updateSelected
   }
 }
 
