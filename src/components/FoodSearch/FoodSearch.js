@@ -32,8 +32,8 @@ function FoodSearch() {
     harmonizeSelected();
   }, [selected])
 
-  const handleRowClicked = (e) => {
-    updateSelected(e.node.data.id)
+  const handleRowSelected = (e) => {
+    updateSelected(e.node.data.id, e.node.isSelected());
   }
 
   return (
@@ -48,7 +48,7 @@ function FoodSearch() {
             flex: 1,
             minWidth: 100,
             resizable: true,
-            checkboxSelection: isFirstColumn,
+            checkboxSelection: isFirstColumn
           }}
           headerHeight={0}
           rowSelection={'multiple'}
@@ -56,7 +56,7 @@ function FoodSearch() {
           rowData={rowData}
           onGridReady={onGridReady}
           domLayout={'autoHeight'}
-          onRowClicked={handleRowClicked}
+          onRowSelected={handleRowSelected}
           columnDefs={columnDefs}
           suppressCellSelection={true}
           pagination={true}

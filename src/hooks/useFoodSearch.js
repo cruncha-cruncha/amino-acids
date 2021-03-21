@@ -38,10 +38,12 @@ function useFoodSearch() {
     setSearchResults(results);
   }
 
-  const updateSelected = (id) => {
-    const add = (selectedFoods.filter(food => food.id == id).length == 0);
+  const updateSelected = (fid, add) => {
     if (add) {
-      const info = foodsIndex[id];
+      if (selectedFoods.filter(food => food.id == fid).length > 0) {
+        return;
+      }
+      const info = foodsIndex[fid];
       setSelectedFoods([ ...selectedFoods, {
         id: info.id,
         name: info.name,
@@ -49,7 +51,7 @@ function useFoodSearch() {
         ...info.aminoAmounts
       }]);
     } else {
-      setSelectedFoods(selectedFoods.filter(food => food.id != id));
+      setSelectedFoods(selectedFoods.filter(food => food.id != fid));
     }
   }
 
