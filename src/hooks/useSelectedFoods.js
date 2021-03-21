@@ -30,8 +30,12 @@ function useFoodSearch() {
       color: e.data.color,
       ...newAA
     }
+    
+    const index = selectedFoods.findIndex(food => food.id == updatedFood.id);
+    const out = [ ...selectedFoods ];
+    out[index] = updatedFood;
 
-    setSelectedFoods([ ...selectedFoods.filter(food => food.id != fid), updatedFood ])
+    setSelectedFoods(out)
     updateTotalsRow();
   }
 

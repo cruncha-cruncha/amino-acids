@@ -1,12 +1,22 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 
 import useSelectedFoods from "../../hooks/useSelectedFoods";
 
 function SelectedFoods() {
   const { columnDefs, rowData, totalsRow, removeSelected } = useSelectedFoods();
-
+  const [gridApi, setGridApi] = useState(null);
   const pageSize = 20;
+
+  const onGridReady = (params) => {
+    setGridApi(params.api);
+  };
+
+  useEffect(() => {
+    if (gridApi) {
+      gridApi.setColumnDefs(columnDefs);
+    }
+  }, [rowData])
 
   const handleCellClicked = (e) => {
     if (e.colDef.field == "name") {
@@ -33,6 +43,7 @@ function SelectedFoods() {
           pinnedBottomRowData={[totalsRow]}
           suppressNoRowsOverlay={true}
           singleClickEdit={true}
+          onGridReady={onGridReady}
         >
         </AgGridReact>
       </div>
