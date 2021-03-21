@@ -17,6 +17,7 @@ function useFoodSearch() {
 
     const fid = e.data.id;
     const info = foodsIndex[fid];
+    const original = selectedFoods.filter(food => food.id == fid)[0];
 
     const newAA = { ...info.aminoAmounts } // new Amino Amounts
     for (const k in newAA) {
@@ -27,6 +28,7 @@ function useFoodSearch() {
       id: info.id,
       name: info.name,
       foodAmount: newAmount,
+      color: original.color,
       ...newAA
     }
 
@@ -39,6 +41,15 @@ function useFoodSearch() {
       headerName: "ID",
       field: "id",
       hide: true
+    },
+    {
+      headerName: '',
+      field: "color",
+      width: 10,
+      maxWidth: 10,
+      cellClass: "no-x-pad",
+      cellStyle: params => ({ fontSize: 0, backgroundColor: params.value }),
+      resizable: false
     },
     {
       headerName: "Food",
@@ -71,6 +82,7 @@ function useFoodSearch() {
       id: 0,
       name: 'total',
       foodAmount: '',
+      color: "#FFF",
       ...aminoAmountTotals
     });
   }

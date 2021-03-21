@@ -10,6 +10,11 @@
   background-color: #ff9980 !important;
 }
 
+.ag-cell.no-x-pad {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .ag-row-pinned.ag-row-hover {
   background-color: inherit !important;
 }

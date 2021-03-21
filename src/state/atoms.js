@@ -14,3 +14,8 @@ export const selectedFoodsState = atom({
   key: 'selectedFoods',
   default: [],
 });
+
+export const colorIndexState = atom({
+  key: 'colorIndex',
+  default: 0
+});

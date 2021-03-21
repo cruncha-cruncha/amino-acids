@@ -1,6 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
+
+import useColor from './useColor';
 import { foodsIndexState, selectedFoodsState } from '../state/atoms';
 
 function useFoodSearch() {
@@ -9,6 +11,8 @@ function useFoodSearch() {
 
   const [allFoods, setAllFoods] = useState([])
   const [searchResults, setSearchResults] = useState([]);
+
+  const { getNextColor } = useColor();
 
   useEffect(() => {
     setAllFoods(Object.values(foodsIndex).reduce((out, elem) => 
@@ -48,6 +52,7 @@ function useFoodSearch() {
         id: info.id,
         name: info.name,
         foodAmount: 100,
+        color: getNextColor(),
         ...info.aminoAmounts
       }]);
     } else {

@@ -19,7 +19,7 @@ function SelectedFoods() {
       <div className="mb-1">
         <span>Grams of essential amino acids per an amount of food (default is 100g, click on the value to edit it). Click on a food name to de-select it. "Met" is methionine + cystine, "Phe" is phenylalanine + tyrosine, all others are single acids.</span>
       </div>
-      <div className="ag-theme-alpine no-hover" style={{ height: 400 }}>
+      <div className="ag-theme-alpine less-x-pad no-hover" style={{ height: 400 }}>
         <AgGridReact
           defaultColDef={{
             resizable: true
