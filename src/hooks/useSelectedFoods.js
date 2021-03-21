@@ -7,8 +7,8 @@ function useFoodSearch() {
   const foodsIndex = useRecoilValue(foodsIndexState);
   const aminoLookup = useRecoilValue(aminoLookupState);
   const [selectedFoods, setSelectedFoods] = useRecoilState(selectedFoodsState);
-  const [totalsRow, setTotalsRow] = useState(null);
-
+  const [totalsRow, setTotalsRow] = useState({});
+  
   const handleFoodAmountChanged = (e) => {
     const newAmount = Number.parseFloat(e.newValue);
     if (newAmount.toString() !== e.newValue.trim()) {
@@ -17,7 +17,6 @@ function useFoodSearch() {
 
     const fid = e.data.id;
     const info = foodsIndex[fid];
-    const original = selectedFoods.filter(food => food.id == fid)[0];
 
     const newAA = { ...info.aminoAmounts } // new Amino Amounts
     for (const k in newAA) {
@@ -28,7 +27,7 @@ function useFoodSearch() {
       id: info.id,
       name: info.name,
       foodAmount: newAmount,
-      color: original.color,
+      color: e.data.color,
       ...newAA
     }
 
