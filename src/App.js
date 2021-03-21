@@ -24,14 +24,19 @@ function App() {
 
 
   return (
-    <div className="container my-5">
-      {visibilityLatch &&
-        <React.Fragment>
-          <AminoGraph />
-          <SelectedFoods />
-        </React.Fragment>
-      }
-      <FoodSearch />
+    <div className="container py-5 min-vh-100 d-flex flex-column justify-content-between">
+      <div className="main-content">
+        {visibilityLatch &&
+          <React.Fragment>
+            <AminoGraph />
+            <SelectedFoods />
+          </React.Fragment>
+        }
+        <FoodSearch />
+      </div>
+      <div className="footer d-flex flex-row justify-content-center">
+        <a href="https://github.com/cruncha-cruncha/amino-acids">About</a>
+      </div>
     </div>
   );
 }
