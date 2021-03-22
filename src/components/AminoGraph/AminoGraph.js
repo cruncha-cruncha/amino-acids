@@ -3,6 +3,12 @@ import { VictoryAxis, VictoryChart, VictoryBar, VictoryLabel, VictoryVoronoiCont
 
 import useAminoGraph from '../../hooks/useAminoGraph';
 
+// show recommended amino acid ratios, see https://en.wikipedia.org/wiki/Essential_amino_acid
+// - have them stick to the limiting amino
+// graph options:
+// - binary toggle: "absolute" and "relative"; abslute shows amino acid amounts, relative scales amounts by recommeneded amino ratios
+// - select: amino ratios (WHO, USDA, whatevere other source I can find)
+
 // https://formidable.com/open-source/victory/docs/
 // https://formidable.com/open-source/victory/gallery/stacked-histogram
 function AminoGraph() {

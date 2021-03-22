@@ -44,7 +44,7 @@ function useFoodSearch() {
 
   const updateSelected = (fid, add) => {
     if (add) {
-      if (selectedFoods.filter(food => food.id == fid).length > 0) {
+      if (selectedFoods.filter(food => food.id === fid).length > 0) {
         return;
       }
       const info = foodsIndex[fid];
@@ -56,7 +56,7 @@ function useFoodSearch() {
         ...info.aminoAmounts
       }]);
     } else {
-      setSelectedFoods(selectedFoods.filter(food => food.id != fid));
+      setSelectedFoods(selectedFoods.filter(food => food.id !== fid));
     }
   }
 

@@ -19,7 +19,7 @@ function SelectedFoods() {
   }, [rowData])
 
   const handleCellClicked = (e) => {
-    if (e.colDef.field == "name") {
+    if (e.colDef.field === "name") {
       removeSelected(e.data.id);
     }
   }

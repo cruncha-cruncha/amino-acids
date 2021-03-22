@@ -31,7 +31,7 @@ function useFoodSearch() {
       ...newAA
     }
     
-    const index = selectedFoods.findIndex(food => food.id == updatedFood.id);
+    const index = selectedFoods.findIndex(food => food.id === updatedFood.id);
     const out = [ ...selectedFoods ];
     out[index] = updatedFood;
 
@@ -95,7 +95,7 @@ function useFoodSearch() {
   }, [selectedFoods]);
 
   const removeSelected = (idToRemove) => {
-    setSelectedFoods(selectedFoods.filter(food => food.id != idToRemove));
+    setSelectedFoods(selectedFoods.filter(food => food.id !== idToRemove));
   }
 
   return {
