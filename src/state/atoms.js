@@ -19,3 +19,13 @@ export const colorIndexState = atom({
   key: 'colorIndex',
   default: 0
 });
+
+export const normalizeGraphState = atom({
+  key: 'normalizeGraph',
+  default: false
+});
+
+export const dailyRatioState = atom({
+  key: 'recommendedDailySelected',
+  default: 'WHO'
+});
