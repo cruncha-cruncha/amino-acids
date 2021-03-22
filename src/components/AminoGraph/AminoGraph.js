@@ -1,5 +1,5 @@
 import React from 'react';
-import { VictoryAxis, VictoryChart, VictoryBar, VictoryLabel, VictoryVoronoiContainer, VictoryTheme, VictoryStack } from 'victory';
+import { VictoryAxis, VictoryChart, VictoryBar, VictoryTheme, VictoryStack } from 'victory';
 
 import useAminoGraph from '../../hooks/useAminoGraph';
 
@@ -12,7 +12,7 @@ import useAminoGraph from '../../hooks/useAminoGraph';
 // https://formidable.com/open-source/victory/docs/
 // https://formidable.com/open-source/victory/gallery/stacked-histogram
 function AminoGraph() {
-  const { aminoLookup, data } = useAminoGraph();
+  const { aminoLookup, data, recommendedData } = useAminoGraph();
 
   const xAxisStyles = {
     tickLabels: {
@@ -33,7 +33,8 @@ function AminoGraph() {
   return (
     <VictoryChart
       domainPadding={20}
-      height={300}
+      padding={{ top: 0, right: 20, bottom: 30, left: 50 }}
+      height={200}
       theme={VictoryTheme.material}
     >
       <VictoryAxis
@@ -56,6 +57,13 @@ function AminoGraph() {
           />
         ))}
       </VictoryStack>
+
+      <VictoryBar
+        style={{ data: { fill: 'black' }}}
+        data={recommendedData}
+        x="aid"
+      />
+
     </VictoryChart>
   );
 }

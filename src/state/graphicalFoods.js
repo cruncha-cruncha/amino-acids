@@ -2,14 +2,13 @@ import { selector } from 'recoil';
 
 import { selectedFoodsState, aminoLookupState } from './atoms';
 
-const graphicalFoodsState = selector({
-  key: 'filteredTodoListState',
+export const graphicalFoodsState = selector({
+  key: 'graphicalFoods',
   get: ({get}) => {
     const selectedFoods = get(selectedFoodsState);
     const aminoLookup = get(aminoLookupState);
 
     return selectedFoods.map(food => ({
-      fid: food.id,
       color: food.color,
       data: Object.keys(aminoLookup).map(aid => ({
         aid: aid,
@@ -18,5 +17,3 @@ const graphicalFoodsState = selector({
     }));
   },
 });
-
-export default graphicalFoodsState;

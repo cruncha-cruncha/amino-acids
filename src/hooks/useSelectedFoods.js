@@ -2,11 +2,13 @@
 import { useState, useEffect } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { foodsIndexState, aminoLookupState, selectedFoodsState } from '../state/atoms';
+import { aminoAmountTotalsState } from '../state/aminoAmountTotals';
 
 function useFoodSearch() {
   const foodsIndex = useRecoilValue(foodsIndexState);
   const aminoLookup = useRecoilValue(aminoLookupState);
   const [selectedFoods, setSelectedFoods] = useRecoilState(selectedFoodsState);
+  const aminoAmountTotals = useRecoilValue(aminoAmountTotalsState);
   const [totalsRow, setTotalsRow] = useState({});
   
   const handleFoodAmountChanged = (e) => {
@@ -71,16 +73,6 @@ function useFoodSearch() {
   ];
 
   const updateTotalsRow = () => {
-    const aminoIdList = Object.keys(aminoLookup);
-    const aminoAmountTotals = selectedFoods.reduce((out, food) => {
-      for (const aid of aminoIdList) {
-        out[aid] += food[aid];
-      }
-      return out;
-    }, aminoIdList.reduce((out, id) => {
-      out[id] = 0; return out;
-    }, {}));
-
     setTotalsRow({
       id: 0,
       name: 'total',
