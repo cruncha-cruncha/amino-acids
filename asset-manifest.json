@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/amino-acids/static/css/main.aaced9e1.chunk.css",
+    "main.js": "/amino-acids/static/js/main.658205ab.chunk.js",
+    "main.js.map": "/amino-acids/static/js/main.658205ab.chunk.js.map",
+    "runtime-main.js": "/amino-acids/static/js/runtime-main.b32ef83f.js",
+    "runtime-main.js.map": "/amino-acids/static/js/runtime-main.b32ef83f.js.map",
+    "static/css/2.7acaeeec.chunk.css": "/amino-acids/static/css/2.7acaeeec.chunk.css",
+    "static/js/2.725361fb.chunk.js": "/amino-acids/static/js/2.725361fb.chunk.js",
+    "static/js/2.725361fb.chunk.js.map": "/amino-acids/static/js/2.725361fb.chunk.js.map",
+    "static/js/3.3a6b7e5a.chunk.js": "/amino-acids/static/js/3.3a6b7e5a.chunk.js",
+    "static/js/3.3a6b7e5a.chunk.js.map": "/amino-acids/static/js/3.3a6b7e5a.chunk.js.map",
+    "index.html": "/amino-acids/index.html",
+    "static/css/2.7acaeeec.chunk.css.map": "/amino-acids/static/css/2.7acaeeec.chunk.css.map",
+    "static/css/main.aaced9e1.chunk.css.map": "/amino-acids/static/css/main.aaced9e1.chunk.css.map",
+    "static/js/2.725361fb.chunk.js.LICENSE.txt": "/amino-acids/static/js/2.725361fb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b32ef83f.js",
+    "static/css/2.7acaeeec.chunk.css",
+    "static/js/2.725361fb.chunk.js",
+    "static/css/main.aaced9e1.chunk.css",
+    "static/js/main.658205ab.chunk.js"
+  ]
+}
