@@ -71,6 +71,7 @@ function useFoodSearch() {
     },
     {
       headerName: "Food",
+      minWidth: 150,
       field: "name",
       flex: 1,
       cellClass: "hover-cell-delete"
