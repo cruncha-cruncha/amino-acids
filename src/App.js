@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { RecoilRoot, useRecoilValue } from 'recoil';
+import { Collapse } from 'reactstrap';
 
 import useApp from "./hooks/useApp";
 import AminoGraph from "./components/AminoGraph";
@@ -22,20 +23,13 @@ function App() {
     }
   }, [selected])
 
-  // sudden reveal is janky, how about a nice css slide-reveal effect
-  // https://reactstrap.github.io/components/collapse/
-
-  // and can data on the graph smoothly transition?
-
   return (
     <div className="container py-5 min-vh-100 d-flex flex-column justify-content-between">
       <div className="main-content">
-        {visibilityLatch &&
-          <React.Fragment>
-            <AminoGraph />
-            <SelectedFoods />
-          </React.Fragment>
-        }
+        <Collapse isOpen={visibilityLatch} >
+          <AminoGraph />
+          <SelectedFoods />
+        </Collapse>
         <FoodSearch />
       </div>
       <div className="footer d-flex flex-row justify-content-center">
