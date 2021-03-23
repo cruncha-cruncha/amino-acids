@@ -41,6 +41,19 @@ function useFoodSearch() {
     updateTotalsRow();
   }
 
+  const setVisibility = ({ rowData, isSelected }) => {
+    const updatedFood = {
+      ...rowData,
+      visible: isSelected
+    }
+    
+    const index = selectedFoods.findIndex(food => food.id === updatedFood.id);
+    const out = [ ...selectedFoods ];
+    out[index] = updatedFood;
+
+    setSelectedFoods(out)
+  }
+
   const columnDefs = [
     {
       headerName: "ID",
@@ -50,9 +63,9 @@ function useFoodSearch() {
     {
       headerName: '',
       field: "color",
-      width: 10,
-      maxWidth: 10,
-      cellClass: "no-x-pad",
+      width: 30,
+      maxWidth: 30,
+      cellClass: "min-x-pad",
       cellStyle: params => ({ fontSize: 0, backgroundColor: params.value }),
       resizable: false
     },
@@ -94,7 +107,8 @@ function useFoodSearch() {
     columnDefs,
     rowData: selectedFoods,
     totalsRow,
-    removeSelected
+    removeSelected,
+    setVisibility
   }
 }
 

@@ -42,22 +42,19 @@ function useFoodSearch() {
     setSearchResults(results);
   }
 
-  const updateSelected = (fid, add) => {
-    if (add) {
-      if (selectedFoods.filter(food => food.id === fid).length > 0) {
-        return;
-      }
-      const info = foodsIndex[fid];
-      setSelectedFoods([ ...selectedFoods, {
-        id: info.id,
-        name: info.name,
-        foodAmount: 100,
-        color: getNextColor(),
-        ...info.aminoAmounts
-      }]);
-    } else {
-      setSelectedFoods(selectedFoods.filter(food => food.id !== fid));
+  const addSelected = (fid) => {
+    if (selectedFoods.filter(food => food.id === fid).length > 0) {
+      return;
     }
+    const info = foodsIndex[fid];
+    setSelectedFoods([ ...selectedFoods, {
+      id: info.id,
+      name: info.name,
+      foodAmount: 100,
+      color: getNextColor(),
+      visible: true,
+      ...info.aminoAmounts
+    }]);
   }
 
   const columnDefs = [
@@ -77,7 +74,7 @@ function useFoodSearch() {
     columnDefs,
     rowData: searchResults,
     selected: selectedFoods,
-    updateSelected
+    addSelected
   }
 }
 
