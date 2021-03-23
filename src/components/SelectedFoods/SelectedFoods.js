@@ -44,7 +44,7 @@ function SelectedFoods() {
   return (
     <div className="my-5">
       <div className="mb-1">
-        <span>Grams of essential amino acids per an amount of food (default is 100g, click on the value to edit it). Click on a food name to de-select it. "Met" is methionine + cystine, "Phe" is phenylalanine + tyrosine, all others are single acids.</span>
+        <span>Grams of essential amino acids per an amount of food (default is 100g, click on the value to edit it). Click on a food's name to remove it from the comparison list. "Met" is methionine + cystine, "Phe" is phenylalanine + tyrosine, all others are single acids.</span>
       </div>
       <div className="ag-theme-alpine" style={{ height: 400 }}>
         <AgGridReact
