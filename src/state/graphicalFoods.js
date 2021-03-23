@@ -14,13 +14,16 @@ export const graphicalFoodsState = selector({
     const dailyRatioOptions = get(dailyRatioOptionsState);
     const dailyRatio = get(dailyRatioState);
     
-    const absoluteData = selectedFoods.map(food => ({
-      color: food.color,
-      data: Object.keys(aminoLookup).map(aid => ({
-        aid: aid,
-        amount: food[aid]
-      }))
-    }));
+    const absoluteData = selectedFoods
+      .filter(food => food.visible)
+      .map(food => ({
+        color: food.color,
+        data: Object.keys(aminoLookup).map(aid => ({
+          aid: aid,
+          amount: food[aid]
+        }))
+      })
+    );
 
     if (normalizeGraph) {
       const witnessAmount = dailyRatioOptions[dailyRatio][witnessName];

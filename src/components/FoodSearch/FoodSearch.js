@@ -5,7 +5,7 @@ import { AgGridReact } from 'ag-grid-react';
 import useFoodSearch from '../../hooks/useFoodSearch';
 
 function FoodSearch() {
-  const { columnDefs, rowData, nameSearch, selected, updateSelected } = useFoodSearch(); 
+  const { columnDefs, rowData, nameSearch, selected, addSelected } = useFoodSearch(); 
 
   const pageSize = 20;
 
@@ -32,8 +32,8 @@ function FoodSearch() {
     harmonizeSelected();
   }, [selected])
 
-  const handleRowSelected = (e) => {
-    updateSelected(e.node.data.id, e.node.isSelected());
+  const handleRowClicked = (e) => {
+    addSelected(e.node.data.id);
   }
 
   return (
@@ -47,16 +47,14 @@ function FoodSearch() {
           defaultColDef={{
             flex: 1,
             minWidth: 100,
-            resizable: true,
-            checkboxSelection: isFirstColumn
+            resizable: true
           }}
-          headerHeight={0}
           rowSelection={'multiple'}
-          rowMultiSelectWithClick={'true'}
+          headerHeight={0}
           rowData={rowData}
           onGridReady={onGridReady}
           domLayout={'autoHeight'}
-          onRowSelected={handleRowSelected}
+          onRowClicked={handleRowClicked}
           columnDefs={columnDefs}
           suppressCellSelection={true}
           pagination={true}

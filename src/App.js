@@ -22,18 +22,10 @@ function App() {
     }
   }, [selected])
 
-
   // sudden reveal is janky, how about a nice css slide-reveal effect
   // https://reactstrap.github.io/components/collapse/
 
-  /*
-  PLAN:
-  - get rid of checkboxes on filter table
-  - change wording: "selected" -> "chosen", "detail", or "compare", idk
-  - add checkboxes to selected table to toggle visibility on the graph
-  - can only remove chosen by clicking on them in the chosen table, clicking on them in the filter table only ever adds
-  */
-
+  // and can data on the graph smoothly transition?
 
   return (
     <div className="container py-5 min-vh-100 d-flex flex-column justify-content-between">
