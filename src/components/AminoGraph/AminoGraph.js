@@ -42,10 +42,10 @@ function AminoGraph() {
 
   return (
     <div>
-      <div className="d-flex flex-row justify-content-end align-items-center mx-5" style={{ minHeight: 40 }}>
+      <div className="d-flex flex-column flex-lg-row justify-content-end align-items-center mx-5" style={{ minHeight: 40 }}>
         {graphIsNormalized && 
-          <div className="d-flex flex-row align-items-center mr-4">
-            <span className="d-block mr-2" style={{ flexShrink: 0 }}>Recommended daily ratios according to:</span>
+          <div className="d-flex flex-column flex-lg-row align-items-center mr-lg-4 mb-3 mb-lg-0">
+            <span className="d-block mr-lg-2" style={{ flexShrink: 0 }}>Recommended daily ratios according to:</span>
             <Input type="select" onChange={(e) => setDailyRatio(e.target.value)}>
               {dailyRatioOptions.map(name => (
                 <option value={name} selected={name === dailyRatio ? 'selected' : ''}>
@@ -54,7 +54,7 @@ function AminoGraph() {
               ))}
             </Input>
           </div>}
-        <div className="mr-3">
+        <div className="mr-lg-3">
           <span style={graphIsNormalized ? { color: 'black' } : { color: 'grey' }}>normalize</span>
         </div>
         <Switch
